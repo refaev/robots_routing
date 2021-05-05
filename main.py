@@ -11,10 +11,6 @@ def main():
     L = 5
     l = int(L/2)
     S = 10
-    # s0 = (10, 10)
-    # t0 = (90, 90)
-    # s1 = (90, 10)
-    # t1 = (10, 90)
     s0 = (50, 10)
     t0 = (50, 90)
     s1 = (10, 50)
@@ -23,7 +19,6 @@ def main():
     # my_map = build_map('obstacle', W, H, S)
 
     solve_two_robots_routing(my_map, s0, t0, s1, t1, S, l)
-
 
 def solve_two_robots_routing(my_map, s0, t0, s1, t1, S, l):
     path_2d = find_shortest_path_2d(my_map, s0, t0, l)
@@ -49,6 +44,7 @@ def show_3d_as_video(map_3d_0_path):
         plt.title(str(i))
         plt.pause(0.1)
 
+
 def embed_2d_path_in_3d_map(map_3d, robot_path, l):
     map_3d_0_path = map_3d.copy()
     for i in range(len(robot_path)-1):
@@ -58,6 +54,7 @@ def embed_2d_path_in_3d_map(map_3d, robot_path, l):
         loc = robot_path[i]
         map_3d_0_path[loc[0]-l:loc[0]+l, loc[1]-l:loc[1]+l, j] = 4
     return map_3d_0_path
+
 
 def embed_path_in_3d_map(map_3d, robot_0_path, l, enum=4):
     map_3d_0_path = map_3d.copy()
@@ -69,10 +66,11 @@ def embed_path_in_3d_map(map_3d, robot_0_path, l, enum=4):
 
 def find_shortest_path_3d(map_3d, s, t):
     graph = np.zeros(map_3d.shape, dtype=np.uint32)
-    # graph += 8141840 ## move only up: 00000000011111000011110000010000
-    graph += 15376 ## move only up, 4 neighbours or stay: 00000000000000000011110000010000
+    graph += 8141840 ## move only up: 00000000011111000011110000010000
+    # graph += 15376 ## move only up, 4 neighbours or stay: 00000000000000000011110000010000
     # map_3d = (map_3d>0)*100 + 1
-    path_3d = dijkstra3d.dijkstra(map_3d > 0, (s[0], s[1], 0), (t[0], t[1], map_3d.shape[2]-1), voxel_graph=graph, compass=True)
+    # graph[map_3d > 0] = 0
+    path_3d = dijkstra3d.dijkstra(1000000*(map_3d>0)+1, (s[0], s[1], 0), (t[0], t[1], map_3d.shape[2]-1), voxel_graph=graph)#, compass=True)
     return path_3d
 
 
