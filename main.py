@@ -6,16 +6,14 @@ import cv2 as cv
 
 
 def main():
-    W = 100
+    W = 120
     H = 150
     L = 5
     l = int(L/2)
-    S = 10
-    s0 = (50, 10)
-    t0 = (50, 90)
-    s1 = (10, 50)
-    t1 = (90, 50)
-    my_map = build_map('empty', W, H, S)
+    # S = 10
+
+    my_map, s0, t0, s1, t1, S = build_map('corridor', W, H)
+    # my_map = build_map('empty', W, H, S)
     # my_map = build_map('obstacle', W, H, S)
 
     solve_two_robots_routing(my_map, s0, t0, s1, t1, S, l)
@@ -93,19 +91,39 @@ def render_map(my_map, s0, t0, s1, t1, l):
     return im
 
 
-def build_map(type, W, H, S):
+def build_map(type, W, H):
     my_map = np.zeros((W + 2, H + 2))
     my_map[0] = 1
     my_map[:, 0] = 1
     my_map[W + 1] = 1
     my_map[:, H + 1] = 1
     if type == 'empty':
-        return my_map
+        s0 = (50, 10)
+        t0 = (50, 90)
+        s1 = (10, 50)
+        t1 = (90, 50)
+        S = 10
+        return my_map, s0, t0, s1, t1, S
 
     if type == 'obstacle':
+        S = 10
         my_map[50-S:50+S, 50-S:50+S, ] = 1
-        return my_map
+        s0 = (50, 10)
+        t0 = (50, 90)
+        s1 = (10, 50)
+        t1 = (90, 50)
+        return my_map, s0, t0, s1, t1, S
 
-
+    if type == 'corridor':
+        S = 18
+        my_map[30-S:30+S, 30-S:30+S, ] = 1
+        my_map[70-S:70+S, 70-S:70+S, ] = 1
+        my_map[30-S:30+S, 70-S:70+S, ] = 1
+        my_map[70-S:70+S, 30-S:30+S, ] = 1
+        s0 = (6, 6)
+        t0 = (94, 94)
+        s1 = (6, 94)
+        t1 = (94, 6)
+        return my_map, s0, t0, s1, t1, S
 if __name__ == '__main__':
     main()
