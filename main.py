@@ -116,14 +116,23 @@ def build_map(type, W, H):
 
     if type == 'corridor':
         S = 18
-        my_map[30-S:30+S, 30-S:30+S, ] = 1
-        my_map[70-S:70+S, 70-S:70+S, ] = 1
-        my_map[30-S:30+S, 70-S:70+S, ] = 1
-        my_map[70-S:70+S, 30-S:30+S, ] = 1
-        s0 = (6, 6)
-        t0 = (94, 94)
-        s1 = (6, 94)
-        t1 = (94, 6)
+        my_map[30-S:30+S, 20-S:20+S, ] = 1
+        my_map[70-S:70+S, 60-S:60+S, ] = 1
+        my_map[30-S:30+S, 60-S:60+S, ] = 1
+        my_map[70-S:70+S, 20-S:20+S, ] = 1
+
+        my_map[30-S:30+S, 132-S:132+S, ] = 1
+        my_map[70-S:70+S, 96-S:96+S, ] = 1
+        my_map[30-S:30+S, 96-S:96+S, ] = 1
+        my_map[70-S:70+S, 132-S:132+S, ] = 1
+
+        s0 = (6, 45)
+        t0 = (94, 45)
+        s1 = (6, 55)
+        t1 = (94, 55)
         return my_map, s0, t0, s1, t1, S
+
+
 if __name__ == '__main__':
     main()
+    plt.show()
