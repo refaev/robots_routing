@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from skimage import graph
 import dijkstra3d
+import skimage.graph as sg
 import cv2 as cv
 
 
@@ -12,9 +13,9 @@ def main():
     l = int(L/2)
     # S = 10
 
-    map_2d, s0, t0, s1, t1, S = build_map('corridor', W, H)
-    # map_2d, s0, t0, s1, t1, S = build_map('empty', W, H, S)
-    # map_2d, s0, t0, s1, t1, S = build_map('obstacle', W, H, S)
+    # map_2d, s0, t0, s1, t1, S = build_map('corridor', W, H)
+    # map_2d, s0, t0, s1, t1, S = build_map('empty', W, H)
+    map_2d, s0, t0, s1, t1, S = build_map('obstacle', W, H)
 
     solve_two_robots_routing(map_2d, s0, t0, s1, t1, l)
 
@@ -87,8 +88,11 @@ def find_shortest_path_3d(map_3d, s, t):
     graph = np.zeros(map_3d.shape, dtype=np.uint32)
     graph += 8141840 ## move only up: 00000000011111000011110000010000
     # graph += 15376 ## move only up, 4 neighbours or stay: 00000000000000000011110000010000
-    # path_3d = dijkstra3d.dijkstra(1000000*(map_3d>0)+1, (s[0], s[1], 0), (t[0], t[1], map_3d.shape[2]-1), connectivity=26, compass=True)
-    path_3d = dijkstra3d.dijkstra(1000000*(map_3d>0)+1, (s[0], s[1], 0), (t[0], t[1], map_3d.shape[2]-1), voxel_graph=graph, compass=True)
+    # # path_3d = dijkstra3d.dijkstra(1000000*(map_3d>0)+1, (s[0], s[1], 0), (t[0], t[1], map_3d.shape[2]-1), connectivity=26, compass=True)
+    # path_3d = dijkstra3d.dijkstra(1000000*(map_3d>0)+1, (s[0], s[1], 0), (t[0], t[1], map_3d.shape[2]-1), voxel_graph=graph, compass=True)
+
+    path_3d, _ = sg.route_through_array((map_3d>0)*10000000+1, [s[0], s[1], 0], [t[0], t[1], map_3d.shape[2]-1], geometric=True)
+
     return path_3d
 
 
