@@ -38,12 +38,13 @@ def solve_two_robots_routing(map_2d, s0, t0, s1, t1, l):
 
 
 def dilate_map_xy(map_3d, l):
-    kernel = np.ones((l, l))
-    for i in range(map_3d.shape[2]):
-        im = map_3d[:,:,i]
-        im = cv.dilate(im, kernel=kernel)
-        map_3d[:,:,i] = im
-    return map_3d
+    map_3d_copy = map_3d.copy()
+    kernel = np.ones((l+l+1, l+l+1))
+    for i in range(map_3d_copy.shape[2]):
+        im = map_3d_copy[:,:,i]
+        im_fat = cv.dilate((im>0).astype(float), kernel=kernel)
+        map_3d_copy[:,:,i] = im_fat
+    return map_3d_copy
 
 
 def show_3d_as_video(map_3d_0_path):
