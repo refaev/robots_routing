@@ -2,14 +2,15 @@
 
 Solve the Multi-Agent Path Finding (MAPF) problem for two robots assuming grid-world.
 
-usage: 
+## Usage: ## 
 python manager.py
 
-design:
-![alt text](http://url/to/img.png)
+## Design: ##
+[Project design](https://github.com/refaev/robots_routing/blob/master/images/design.png)
 
-Related work:
-from [1]:
+## Related work: ##
+
+From [1]:
 Solving the Multi-Agent Path Finding (MAPF) problem optimally is known to be NP-Hard for both make-span and total arrival time minimization. 
 Many types of optimal MAPF algorithms and their variants have been proposed, including Conflict Based Search (CBS) [14], a method based on branch-and-cut-and-price (BCP) [10], and a boolean satisfiability based algorithm (SAT) [19].
 
