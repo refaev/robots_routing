@@ -5,6 +5,8 @@ Solve the Multi-Agent Path Finding (MAPF) problem for two robots assuming grid-w
 usage: 
 python manager.py
 
+design:
+![alt text](http://url/to/img.png)
 
 Related work:
 from [1]:
