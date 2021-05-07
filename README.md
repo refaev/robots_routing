@@ -1,12 +1,13 @@
 # robots_routing
 
 Solve the Multi-Agent Path Finding (MAPF) problem for two robots assuming grid-world.
-
+![Corridor example](https://github.com/refaev/robots_routing/blob/master/images/corridor_example.jpg)
+In this example, the two robots are heading from the circles to the x-marks. The yellow one is waiting a bit to let the green robot go ahead, and follows it.
 ## Usage: ## 
 python manager.py
 
 ## Design: ##
-![Project design](https://github.com/refaev/robots_routing/blob/master/design_small.jpg)
+![Project design](https://github.com/refaev/robots_routing/blob/master/images/design_small.jpg)
 
 ## Related work: ##
 
