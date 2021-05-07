@@ -6,7 +6,7 @@ Solve the Multi-Agent Path Finding (MAPF) problem for two robots assuming grid-w
 python manager.py
 
 ## Design: ##
-![Project design](https://refaev.github.com/robots_routing//images/design.png)
+![Project design](https://github.com/refaev/robots_routing/blob/master/design_small.jpg)
 
 ## Related work: ##
 
