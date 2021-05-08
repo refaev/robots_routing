@@ -20,14 +20,14 @@ def embed_2d_path_in_2d_map(map_3d, robot_path, l):
     return map_3d_0_path
 
 
-def embed_2d_path_in_3d_map(map_3d, robot_path, l):
+def embed_2d_path_in_3d_map(map_3d, robot_path, l, enum=4):
     map_3d_0_path = map_3d.copy()
     for i in range(len(robot_path)-1):
         loc = robot_path[i]
-        map_3d_0_path[loc[0]-l+1:loc[0]+l+1, loc[1]-l+1:loc[1]+l+1, i] = 4
+        map_3d_0_path[loc[0]-l+1:loc[0]+l+1, loc[1]-l+1:loc[1]+l+1, i] = enum
     for j in range(i, map_3d.shape[2]):
         loc = robot_path[i]
-        map_3d_0_path[loc[0]-l+1:loc[0]+l+1, loc[1]-l+1:loc[1]+l+1, j] = 4
+        map_3d_0_path[loc[0]-l+1:loc[0]+l+1, loc[1]-l+1:loc[1]+l+1, j] = enum
     return map_3d_0_path
 
 

@@ -17,7 +17,16 @@ def build_map(type, W, H):
 
     if type == 'obstacle':
         S = 10
-        map_2d[50-S:50+S, 50-S:50+S, ] = 1
+        map_2d[50-S:50+S, 51-S:51+S, ] = 1
+        s0 = (50, 10)
+        t0 = (50, 90)
+        s1 = (10, 50)
+        t1 = (90, 50)
+        return map_2d, s0, t0, s1, t1, S
+
+    if type == 'obstacle_conflict':
+        S = 10
+        map_2d[50-S:50+S, 49-S:49+S, ] = 1
         s0 = (50, 10)
         t0 = (50, 90)
         s1 = (10, 50)
